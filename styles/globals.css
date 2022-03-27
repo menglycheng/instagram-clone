@@ -8,3 +8,8 @@
         ease-out hover:scale-125 md:inline-flex;
   }
 }
+@layer components {
+  .btn {
+    @apply h-7 cursor-pointer transition-all duration-150 ease-out hover:scale-125;
+  }
+}
