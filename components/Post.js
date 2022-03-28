@@ -148,7 +148,7 @@ const Post = ({ id, username, userImg, img, caption }) => {
             value={comment}
             onChange={setComment}
             className="flex-1 flex-row-reverse border-none outline-none focus:ring-0 "
-            placeholder="Add a comment ...."
+            placeholder="Add a comment ..."
           />
           <button
             type="submit"
