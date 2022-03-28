@@ -140,25 +140,26 @@ const Post = ({ id, username, userImg, img, caption }) => {
           ))}
         </div>
       )}
-
-      <form action="" className="flex items-center p-4">
-        <InputEmoji
-          type="text"
-          cleanOnEnter
-          value={comment}
-          onChange={setComment}
-          className="flex-1 flex-row-reverse border-none outline-none focus:ring-0 "
-          placeholder="Add a comment ...."
-        />
-        <button
-          type="submit"
-          disabled={!comment.trim()}
-          onClick={sendComment}
-          className="font-semibold text-blue-400"
-        >
-          Post
-        </button>
-      </form>
+      {session && (
+        <form action="" className="flex items-center p-4">
+          <InputEmoji
+            type="text"
+            cleanOnEnter
+            value={comment}
+            onChange={setComment}
+            className="flex-1 flex-row-reverse border-none outline-none focus:ring-0 "
+            placeholder="Add a comment ...."
+          />
+          <button
+            type="submit"
+            disabled={!comment.trim()}
+            onClick={sendComment}
+            className="font-semibold text-blue-400"
+          >
+            Post
+          </button>
+        </form>
+      )}
     </div>
   )
 }
