@@ -1,4 +1,6 @@
-import React from 'react'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { db } from '../firebase'
 import Post from './Post'
 
 const DUMMY_DATA = [
@@ -21,16 +23,26 @@ const DUMMY_DATA = [
 ]
 
 function Posts() {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    return onSnapshot(
+      query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
+      (snapshot) => {
+        setPosts(snapshot.docs)
+      }
+    )
+    console.log(posts)
+  }, [db])
   return (
     <div>
-      {DUMMY_DATA.map((post) => (
+      {posts.map((post) => (
         <Post
           key={post.id}
           id={post.id}
-          username={post.username}
-          userImg={post.userImg}
-          img={post.img}
-          caption={post.caption}
+          username={post.data().username}
+          userImg={post.data().profileImg}
+          img={post.data().image}
+          caption={post.data().caption}
         />
       ))}
     </div>
